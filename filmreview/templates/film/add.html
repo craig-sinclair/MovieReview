@@ -1,0 +1,25 @@
+{% extends 'film/navbar.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+
+{% block title_block %}
+Add a Movie!
+{% endblock %}
+
+{% block body_block %}
+<div id="addMovieBox">
+    <form id="Movie_Form" method='post' action="/film/add/" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+    <p>
+        {{ field.label_tag }}
+        {{ field|add_class:"form-control" }}
+        {{ field.help_text|default_if_none:"" }}
+    </p>
+    {% endfor %}
+
+    <input type="submit" name="submit" value="Submit" />
+    </form>
+</div>
+{% endblock %}

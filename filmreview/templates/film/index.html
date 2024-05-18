@@ -1,0 +1,27 @@
+{% extends 'film/navbar.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+Home Page
+{% endblock %}
+{% block body_block %}
+		<br>
+		<br>
+		<div>
+			{% if movies %}
+			<ul id="listBox">
+			{% for movie in movies %}
+				<li>
+					{% if movie.cover_art %}
+					<img class="cover_art" src="{{ movie.cover_art.url }}" />
+					{% endif %}
+					<div class="infoBox">
+						<p>Title: {{ movie.name }}</p>
+						<p>Director: {{ movie.director }}</p>
+					</div>
+				</li>
+			{% endfor %}
+			</ul>
+			{% endif %}
+		</div>
+{% endblock %}
