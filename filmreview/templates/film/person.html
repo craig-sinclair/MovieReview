@@ -1,0 +1,34 @@
+{% extends 'film/navbar.html' %}
+{% load staticfiles %}
+{% block additional_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/detailsStyles.css' %}">
+{% endblock %}
+{% block body_block %}
+<br>
+<br>
+<div class="movie-search-info">
+{% if person %}
+    <h1 id="detail-title">{{ person.name }}</h1>
+    <div class="movie-container">
+
+
+    <div class="movie-poster">
+        <img src="{{ profile_path }}" alt="{{ profile_path }}" class="moviePicture"/>
+    </div>
+{% endif %}
+
+{% if movies %}
+<div class="cast-container">
+    {% for movie in movies %}
+        <div class="people-box">
+            <a href="{% url 'film:details' movie.id %}" >
+                <img src="{{ movie.poster_url }}" alt="{{ movie.title }}" class="cast-portrait"/>
+            </a>
+        </div>
+    {% endfor %} 
+    </ul>
+</div>
+{% endif %}
+</div>
+</div>
+{% endblock %}

@@ -27,7 +27,9 @@
             <div class="cast-container">
                 {% for member in cast %}
                     <div class="people-box">
-                        <img src="{{ member.profile_url }}" alt="{{ member.name }}" class="cast-portrait"/>
+                        <a href="{% url 'film:person' member.id %}" >
+                            <img src="{{ member.profile_url }}" alt="{{ member.name }}" class="cast-portrait"/>
+                        </a>
                         <p>{{ member.name }}</p>
                     </div>
                 {% endfor %} 

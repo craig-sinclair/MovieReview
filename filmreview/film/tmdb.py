@@ -26,7 +26,8 @@ def get_popular_movies():
         'page': 1,
     }
     response = requests.get(url, params=params)
-    return response.json().get('results', [])
+    movies = response.json().get('results', [])
+    return movies[:16]
 
 def get_cast(movie_id):
     credits = movie.credits(movie_id)
@@ -38,3 +39,32 @@ def get_cast(movie_id):
         else:
             member['profile_url'] = 'https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg'
     return cast
+
+
+def get_person_by_id(person_id):
+    url = f"https://api.themoviedb.org/3/person/{person_id}" 
+    params = {
+        'api_key': settings.TMDB_API_KEY, 
+        'language': 'en-US'
+    }
+    response = requests.get(url, params=params)
+    if response.status_code == 200: 
+        return response.json() 
+    else:
+        return None 
+    
+def get_person_movies(person_id):
+    url = f"https://api.themoviedb.org/3/person/{person_id}/movie_credits"
+    params = {
+        'api_key': settings.TMDB_API_KEY,
+        'language': 'en-US'
+    }
+    response = requests.get(url, params=params)
+    if response.status_code == 200:  
+       data = response.json()
+       casted_films = data.get('cast', [])
+       sorted_casted_films = sorted(casted_films, key=lambda x: x.get('popularity', 0), reverse=True)
+       return sorted_casted_films[:12]
+
+    else:
+        return None
