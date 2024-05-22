@@ -27,3 +27,14 @@ def get_popular_movies():
     }
     response = requests.get(url, params=params)
     return response.json().get('results', [])
+
+def get_cast(movie_id):
+    credits = movie.credits(movie_id)
+    cast = list(credits.get('cast', []))
+    cast = cast[:8]
+    for member in cast:
+        if member.get('profile_path'):
+            member['profile_url'] = f"https://image.tmdb.org/t/p/w500{member['profile_path']}"
+        else:
+            member['profile_url'] = 'https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg'
+    return cast

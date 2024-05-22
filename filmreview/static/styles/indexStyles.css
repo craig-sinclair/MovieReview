@@ -124,7 +124,7 @@ body{
 }
 
 #about-box{
-    width: 80%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -132,4 +132,36 @@ body{
 
 #about-link{
     color: white;
+}
+
+.search-box{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    background-color: #1B2631;
+}
+
+.search-box input[type="text"]{
+    padding: 6px;
+    font-size: 20px;
+    border: 1px solid #273746;
+    background-color: #1B2631;
+    width: 60%;
+    color: white;
+}
+
+.search-box input[type="text"]:active{
+    background-color: #1B2631;
+    color: white;
+}
+
+.search-box button{
+    background: #273746;
+    font-size: 20px;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-left: 4px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
 }

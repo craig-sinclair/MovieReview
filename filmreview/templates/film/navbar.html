@@ -7,6 +7,8 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Poetsen+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        {% block additional_styles %}
+        {% endblock %}
         <title>
         {% block title_block %}
         Film Review
@@ -21,6 +23,12 @@
                 <li><a href="{% url 'film:index' %}">Top Reviews</a></li>
                 <li><a href="{% url 'film:about' %}">About</a></li>
                 <li><a href="{% url 'film:index' %}">Profile</a></li>
+                <div class="search-box">
+                    <form action="{% url 'film:search' %}" method="GET">
+                        <input type="text" placeholder="Search for a movie..." name="query" id="nav-search-bar">
+                        <button type="submit" id="navSearchButton">Search</button>
+                    </form>
+                </div>
             </ul>
         </div>
 

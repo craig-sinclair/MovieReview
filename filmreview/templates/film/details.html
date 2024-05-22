@@ -1,0 +1,42 @@
+{% extends 'film/navbar.html' %}
+{% load staticfiles %}
+
+{% block additional_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/detailsStyles.css' %}">
+{% endblock %}
+
+
+{% block body_block %}
+    <br>
+    <br>
+    <div class="movie-search-info">
+    {% if movie %}
+    <h1 id="detail-title">{{ movie.title }}</h1>
+    <div class="movie-container">
+
+
+        <div class="movie-poster">
+            <img src="{{ poster_url }}" alt="{{ movie.title }} Poster" class="moviePicture"/>
+        </div>
+
+
+        <div id="movie-info">
+            <p><span style="font-weight: bold; font-size: larger;">Overview:</span> {{ movie.overview }}</p>
+            <hr>
+            {% if cast %}
+            <div class="cast-container">
+                {% for member in cast %}
+                    <div class="people-box">
+                        <img src="{{ member.profile_url }}" alt="{{ member.name }}" class="cast-portrait"/>
+                        <p>{{ member.name }}</p>
+                    </div>
+                {% endfor %} 
+                </ul>
+            </div>
+            {% endif %}
+    </div>
+    </div>
+    </div>
+    {% endif %}
+
+{% endblock %}

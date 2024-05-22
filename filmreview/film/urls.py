@@ -9,4 +9,6 @@ app_name = 'film'
 urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
+    path('movie/<int:movie_id>/', views.details, name='details'),
+    path('search/', views.search, name='search'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
