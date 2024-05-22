@@ -8,67 +8,58 @@ body{
     font-family: "Roboto";
 }
 
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 10px 20px; 
+    background-color: #1B2631;
+    margin: -8px;
+    margin-right: auto;
+}
+
 .navbar ul {
     list-style-type: none;
+    display: flex;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
-    top: 0px;
-    left: 0px;
+    background-color: #1B2631;
     width: 100%;
-    position: fixed;
 }
 
 .navbar ul li {
+    display: flex;
+    align-items: center;
     float: left;
-    border-right: 1px solid #bbb;
 }
 
 
 .navbar li a {
-    display: block;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     color: white;
+    font-size: 20px;
+}
+
+.navbar li a#title-nav{
+    color: red;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 40px;
+    margin-right: auto;
 }
 
 .navbar li a:hover {
-    background-color: #111;
-}
-
-.cover_art {
-    width: 300px;
-    height: 400px;
-}
-
-.cover_art:hover{
-    opacity: 50%;
-}
-
-
-#listBox ul{
-   padding: 0px;
-   list-style-type: none;
-   
-}
-
-#listBox li{
-    display: inline-block;
-    margin-right: 20px;
-    vertical-align: top;
-    margin-top: 20px;
-}
-
-.infoBox{
-    border: 1px solid black;
-    margin-bottom: 5px;
-    padding: 5px;
+    background-color: #273746;
 }
 
 .infoBox:hover{
-    background-color: #111;
+    background-color: #273746;
+}
+
+.navbar li a#title-nav:hover{
+    background-color: #1B2631;
 }
 
 #addMovieBox{
@@ -86,4 +77,59 @@ body{
     height: 20px;
     border: 1px solid red;
     font-size: 100px;
+}
+
+.movie-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust the spacing between items */
+    list-style-type: none;
+    padding: 0;
+}
+
+.movie-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.movie-list img {
+    border-radius: 8px; /* Optional: add rounded corners to images */
+    width: 200px;
+}
+.movie-list a {
+    text-decoration: none;
+    color: white;
+    text-align: left;
+    margin-top: 5px;
+}
+.movie-list a:hover {
+    color: #007BFF; /* Optional: add hover effect */
+}
+
+.movie-box{
+    max-width: 200px;
+    padding: 5px;
+}
+
+.movie-box :hover{
+    opacity: 70%;
+}
+
+#homepage-box{
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#about-box{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#about-link{
+    color: white;
 }

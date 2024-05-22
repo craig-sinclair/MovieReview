@@ -83,6 +83,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'filmreview.wsgi.application'
 
+TMDB_API_KEY = 'cc0becf71884849a9f5e1ad951bdd161'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

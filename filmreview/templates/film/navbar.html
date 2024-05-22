@@ -6,7 +6,8 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Poetsen+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-		<title>
+		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <title>
         {% block title_block %}
         Film Review
         {% endblock %}
@@ -15,9 +16,10 @@
     <body>
         <div class="navbar">
             <ul>
+                <li><a id="title-nav" href="{% url 'film:index' %}">Film Frantics</a></li>
                 <li><a href="{% url 'film:index' %}">Home</a></li>
                 <li><a href="{% url 'film:index' %}">Top Reviews</a></li>
-                <li><a href="{% url 'film:add' %}">Add Movie Review</a></li>
+                <li><a href="{% url 'film:about' %}">About</a></li>
                 <li><a href="{% url 'film:index' %}">Profile</a></li>
             </ul>
         </div>
