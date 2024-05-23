@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from film.tmdb import search_movie, get_popular_movies, get_movie_detail, get_cast, get_person_by_id, get_person_movies, TMDB_IMAGE_BASE_URL
+from film.tmdb import search_movie, get_popular_movies, get_movie_detail, get_cast, get_person_by_id, get_person_movies, get_top_rated, get_recommendations, get_trending_movies, TMDB_IMAGE_BASE_URL
 
 def index(request):
     context_dict = {}
@@ -10,7 +10,18 @@ def index(request):
     for movie in popular_movies:
         if(movie.get('poster_path')):
             movie['poster_url'] = f"{TMDB_IMAGE_BASE_URL}w500{movie['poster_path']}"
+        average_rating = round(movie['vote_average'] * 10)
+        movie['average_rating'] = str(average_rating) + "%"
     context_dict["movies"] = popular_movies
+
+    trending_films = get_trending_movies()
+    for film in trending_films:
+        if(film.get('poster_path')):
+                film['poster_url'] = f"{TMDB_IMAGE_BASE_URL}w500{film['poster_path']}"
+        average_rating = round(film['vote_average'] * 10)
+        film['average_rating'] = str(average_rating) + "%"
+
+    context_dict['trending_films'] = trending_films
     return render(request, 'film/index.html', context=context_dict)
 
 
@@ -25,9 +36,17 @@ def details(request, movie_id):
     if(movie.get('poster_path')):
         context_dict['poster_url'] = f"{TMDB_IMAGE_BASE_URL}w500{movie['poster_path']}"
 
+    context_dict['release_date'] = movie.release_date[:4]
+    average_score = round(movie.vote_average * 10)
+    context_dict['average_score'] = (str(average_score) + "%")
     cast = get_cast(movie.id)
     context_dict['cast'] = cast
 
+    recommended_movies = get_recommendations(movie_id)
+    for film in recommended_movies:
+        if(film.get('poster_path')):
+            film['poster_url'] = f"{TMDB_IMAGE_BASE_URL}w500{film['poster_path']}"
+    context_dict['recommended'] = recommended_movies
     return render(request, 'film/details.html', context=context_dict)
 
 def search(request):
@@ -66,3 +85,15 @@ def person(request, person_id):
     
     context_dict['movies'] = movies_with_poster
     return render(request, 'film/person.html', context=context_dict)
+
+
+def top(request):
+    context_dict = {}
+    top_movies = get_top_rated()
+    for movie in top_movies:
+        if(movie.get('poster_path')):
+            movie['poster_url'] = f"{TMDB_IMAGE_BASE_URL}w500{movie['poster_path']}"
+        average_rating = round(movie['vote_average'] * 10)
+        movie['average_rating'] = str(average_rating) + "%"
+    context_dict["movies"] = top_movies
+    return render(request, 'film/top.html', context=context_dict)

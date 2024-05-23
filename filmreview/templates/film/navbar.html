@@ -11,7 +11,7 @@
         {% endblock %}
         <title>
         {% block title_block %}
-        Film Review
+        Film Fanatics
         {% endblock %}
         </title>
     </head>
@@ -20,7 +20,7 @@
             <ul>
                 <li><a id="title-nav" href="{% url 'film:index' %}">Film Frantics</a></li>
                 <li><a href="{% url 'film:index' %}">Home</a></li>
-                <li><a href="{% url 'film:index' %}">Top Reviews</a></li>
+                <li><a href="{% url 'film:top' %}">Top Rated</a></li>
                 <li><a href="{% url 'film:about' %}">About</a></li>
                 <li><a href="{% url 'film:index' %}">Profile</a></li>
                 <div class="search-box">

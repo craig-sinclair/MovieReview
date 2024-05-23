@@ -1,14 +1,16 @@
 {% extends 'film/navbar.html' %}
-{% load staticfiles %}
+{% load static %}
 
 {% block additional_styles %}
     <link rel="stylesheet" type="text/css" href="{% static 'styles/detailsStyles.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+    <script src="{% static 'js/progressbar.js' %}"></script>
+    <script src="{% static 'js/semicircle.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
 {% endblock %}
 
 
 {% block body_block %}
-    <br>
-    <br>
     <div class="movie-search-info">
     {% if movie %}
     <h1 id="detail-title">{{ movie.title }}</h1>
@@ -22,8 +24,12 @@
 
         <div id="movie-info">
             <p><span style="font-weight: bold; font-size: larger;">Overview:</span> {{ movie.overview }}</p>
+            <p><span style="font-weight: bold; font-size: larger;">Release Year:</span> {{ release_date }}</p>
+            <div id="container" score="{{ average_score }}"></div> <!-- Average score 'progress circle' -->
             <hr>
+
             {% if cast %}
+            <p><span style="font-weight: bold; font-size: larger;">Cast:</span></p>
             <div class="cast-container">
                 {% for member in cast %}
                     <div class="people-box">
@@ -33,12 +39,28 @@
                         <p>{{ member.name }}</p>
                     </div>
                 {% endfor %} 
-                </ul>
             </div>
+
             {% endif %}
+        </div>
     </div>
-    </div>
-    </div>
+
+        {% if recommended %}
+        <h2 id="recommendations-intro">Liked this? Here are some recommendations:</h2>
+        <div class="recommend-container">
+            
+            {% for recom in recommended %}
+            <div class="people-box">
+                <a href="{% url 'film:details' recom.id %}" >
+                    <img src="{{ recom.poster_url }}" alt="{{ recom.title }}" class="cast-portrait"/>
+                </a>            
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
     {% endif %}
 
+    
+</div>
 {% endblock %}

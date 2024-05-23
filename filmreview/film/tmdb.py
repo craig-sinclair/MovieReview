@@ -29,10 +29,20 @@ def get_popular_movies():
     movies = response.json().get('results', [])
     return movies[:16]
 
+def get_trending_movies():
+    url = f"https://api.themoviedb.org/3/trending/movie/week"
+    params = {
+        'api_key': settings.TMDB_API_KEY,
+        'language': 'en-US',
+        'page': 1,
+    }
+    response = requests.get(url, params=params)
+    movies = response.json().get('results', [])
+    return movies[:16]
+
 def get_cast(movie_id):
     credits = movie.credits(movie_id)
     cast = list(credits.get('cast', []))
-    cast = cast[:8]
     for member in cast:
         if member.get('profile_path'):
             member['profile_url'] = f"https://image.tmdb.org/t/p/w500{member['profile_path']}"
@@ -68,3 +78,24 @@ def get_person_movies(person_id):
 
     else:
         return None
+    
+
+def get_top_rated():
+    url = f"https://api.themoviedb.org/3/movie/top_rated"
+    params = {
+        'api_key': settings.TMDB_API_KEY,
+        'language': 'English',
+        'page': 1,
+    }
+    response = requests.get(url, params=params)
+    return response.json().get('results', [])
+
+def get_recommendations(movie_id):
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}/recommendations"
+    params = {
+        'api_key': settings.TMDB_API_KEY,
+        'language': 'English',
+        'page': 1,
+    }
+    response = requests.get(url, params=params)
+    return response.json().get('results', [])

@@ -1,3 +1,8 @@
+
+:root{
+    color-scheme: dark;
+}
+
 .movie-container{
     display: flex;
     width: 80%;
@@ -9,7 +14,7 @@
     flex: 1;
 }
 
-.movie-info{
+#movie-info{
     flex: 3;
     display: flex;
     flex-direction: column;
@@ -24,12 +29,41 @@
 
 .cast-container{
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 20px;
+    overflow-x: auto;
+    width: 110vh;
+    height: auto;
+    left: 0;
+    right: 0;
     list-style-type: none;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+}
+
+.recommend-container{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    overflow-x: auto;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    left: 0;
+    right: 0;
+    list-style-type: none;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 20px;
 }
 
 .people-box {
+    flex: 0 0 auto;
     max-width: 200px;
     padding: 5px;
     text-align: center;
@@ -41,9 +75,46 @@
 
 .cast-portrait {
     width: 100%;
+    height: auto;
     border-radius: 8px;
 }
 
 .people-list{
     list-style-type: none;
 }
+
+hr {
+    border: 0;
+    clear:both;
+    display:block;
+    width: 100%;               
+    background-color: white;
+    height: 1px;
+  }
+
+  #container {
+    width: 200px !important;
+    height: 100px !important; 
+    display: flex !important;
+    flex-direction: row !important;
+  }
+
+  #container .progressbar-text{
+    top: 0% !important;
+  }
+
+  p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .actor-portrait, .moviePicture{
+    max-height: 95%;
+    width: auto;
+  }
+
+  #recommendations-intro{
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+  }

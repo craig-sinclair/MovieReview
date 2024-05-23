@@ -13,20 +13,27 @@
 
 
     <div class="movie-poster">
-        <img src="{{ profile_path }}" alt="{{ profile_path }}" class="moviePicture"/>
+        <img src="{{ profile_path }}" alt="{{ profile_path }}" class="actor-portrait"/>
     </div>
 {% endif %}
 
 {% if movies %}
-<div class="cast-container">
-    {% for movie in movies %}
-        <div class="people-box">
-            <a href="{% url 'film:details' movie.id %}" >
-                <img src="{{ movie.poster_url }}" alt="{{ movie.title }}" class="cast-portrait"/>
-            </a>
-        </div>
-    {% endfor %} 
-    </ul>
+<div id="movie-info">
+    {% if person.biography %}
+    <p><span style="font-weight: bold; font-size: larger;">Biography: </span>{{ person.biography }}</p>
+    {% endif %}
+    <hr>
+    <p><span style="font-weight: bold; font-size: larger;">Featured Movies:</span></p>
+    <div class="cast-container">
+    
+        {% for movie in movies %}
+            <div class="people-box">
+                <a href="{% url 'film:details' movie.id %}" >
+                    <img src="{{ movie.poster_url }}" alt="{{ movie.title }}" class="cast-portrait"/>
+                </a>
+            </div>
+        {% endfor %} 
+    </div>
 </div>
 {% endif %}
 </div>

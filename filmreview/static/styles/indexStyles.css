@@ -113,7 +113,7 @@ body{
 }
 
 .movie-box :hover{
-    opacity: 70%;
+    color:white;
 }
 
 #homepage-box{
@@ -164,4 +164,44 @@ body{
     border: none;
     cursor: pointer;
     border-radius: 4px;
+}
+
+.index-movie-rating{
+    font-weight: bold;
+}
+
+.index-movie-title{
+    font-weight: lighter;
+    text-align: left;
+    font-size: smaller;
+}
+
+.movie-index-link{
+    text-decoration: none;
+    color:white;
+}
+
+.movie-index-link p:hover{
+    text-decoration: none !important;
+    color: white;
+}
+
+.movie-index-link:link, .movie-index-link:visited{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.movie-box:hover{
+    opacity: 60%;
+}
+
+.movie-box li a{
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.movie-box li a:hover{
+    text-decoration: none !important;
+    color: inherit !important;
 }
