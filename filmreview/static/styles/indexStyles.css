@@ -82,9 +82,12 @@ body{
 .movie-list{
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Adjust the spacing between items */
+    gap: 20px;
     list-style-type: none;
-    padding: 0;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
 }
 
 .movie-list li {
@@ -117,10 +120,9 @@ body{
 }
 
 #homepage-box{
-    width: 98%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
-    display: block;
 }
 
 #about-box{
@@ -204,4 +206,15 @@ body{
 .movie-box li a:hover{
     text-decoration: none !important;
     color: inherit !important;
+}
+
+.moviePicture{
+    height: 60%;
+    width: auto;
+}
+
+.index-header{
+    width: 85%;
+    margin-right: auto;
+    margin-left: auto;
 }

@@ -14,6 +14,11 @@
     flex: 1;
 }
 
+.moviePicture-details{
+    height: 80%;
+    width: auto;
+}
+
 #movie-info{
     flex: 3;
     display: flex;
@@ -118,3 +123,16 @@ hr {
     margin-left: auto;
     margin-right: auto;
   }
+
+.hidden { 
+    display: none; 
+}
+
+.read-more-button {
+     color: blue; cursor: pointer; 
+}
+
+#biography-label{
+    font-weight: bold; 
+    font-size: larger;
+}

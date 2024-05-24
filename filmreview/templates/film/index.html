@@ -11,7 +11,7 @@ Film Frantics
 {% block body_block %}
 
 <div id="homepage-box">
-		<h3 style="margin-left: 5px;">Popular Films:</h3>
+		<h3 class="index-header">Popular Films:</h3>
 			{% if movies %}
 				<ul class="movie-list">
 					{% for movie in movies %}
@@ -30,7 +30,7 @@ Film Frantics
 				<p>No movies found</p>
 			{% endif %}
 
-		<h3 style="margin-left: 5px;">Trending Films:</h3>
+		<h3 class="index-header">Trending Films:</h3>
 		{% if trending_films %}
 			<ul class="movie-list">
 				{% for film in trending_films %}

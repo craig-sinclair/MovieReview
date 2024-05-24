@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block additional_styles %}
     <link rel="stylesheet" type="text/css" href="{% static 'styles/detailsStyles.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
 {% endblock %}
 {% block body_block %}
 <br>
@@ -20,7 +21,8 @@
 {% if movies %}
 <div id="movie-info">
     {% if person.biography %}
-    <p><span style="font-weight: bold; font-size: larger;">Biography: </span>{{ person.biography }}</p>
+    <p><span style="font-weight: bold; font-size: larger;">Biography: </span><span id="movie-overview">{{ person.biography }}</span></p>
+    <button id="read-more-button" class="hidden">Read more</button>
     {% endif %}
     <hr>
     <p><span style="font-weight: bold; font-size: larger;">Featured Movies:</span></p>
