@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from film.tmdb import search_movie, get_popular_movies, get_movie_detail, get_cast, get_person_by_id, get_person_movies, get_top_rated, get_recommendations, get_trending_movies, TMDB_IMAGE_BASE_URL
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import UserRegistrationForm, UserLoginForm
 
 def index(request):
     context_dict = {}
@@ -62,7 +65,7 @@ def search(request):
 
         return render(request, 'film/search.html', {'movies': movies_with_poster})
     else:
-        return render(request, 'film/index.html')
+        return redirect('film:index')
     
 def person(request, person_id):
     context_dict = {}
@@ -97,3 +100,35 @@ def top(request):
         movie['average_rating'] = str(average_rating) + "%"
     context_dict["movies"] = top_movies
     return render(request, 'film/top.html', context=context_dict)
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('film:index')
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'film/register.html', {'form': form})
+
+def user_login(request):
+    if request.method == 'POST':
+        form = UserLoginForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('film:index')
+    else:
+        form = UserLoginForm()
+    return render(request, 'film/login.html', {'form': form})
+
+def user_logout(request):
+    logout(request)
+    return redirect('film:index')
+
+def profile(request):
+    return render(request, 'film/profile.html')

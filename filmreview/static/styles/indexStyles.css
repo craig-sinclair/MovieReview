@@ -137,19 +137,23 @@ body{
 }
 
 .search-box{
-    display: flex;
-    align-items: center;
+    width: 100%;
     margin-left: auto;
-    background-color: #1B2631;
+    margin-right: auto;
+    margin-top: 20px;
+    display: block;
 }
 
 .search-box input[type="text"]{
     padding: 6px;
     font-size: 20px;
-    border: 1px solid #273746;
-    background-color: #1B2631;
-    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
     color: white;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 150vh;
+    display: block;
 }
 
 .search-box input[type="text"]:active{
@@ -160,12 +164,11 @@ body{
 .search-box button{
     background: #273746;
     font-size: 20px;
-    padding: 6px 10px;
-    margin-top: 8px;
-    margin-left: 4px;
-    border: none;
+    border: 1px solid #273746;
+    border-radius: 10px;
     cursor: pointer;
     border-radius: 4px;
+    display: none;
 }
 
 .index-movie-rating{

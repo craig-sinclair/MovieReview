@@ -22,13 +22,7 @@
                 <li><a href="{% url 'film:index' %}">Home</a></li>
                 <li><a href="{% url 'film:top' %}">Top Rated</a></li>
                 <li><a href="{% url 'film:about' %}">About</a></li>
-                <li><a href="{% url 'film:index' %}">Profile</a></li>
-                <div class="search-box">
-                    <form action="{% url 'film:search' %}" method="GET">
-                        <input type="text" placeholder="Search for a movie..." name="query" id="nav-search-bar">
-                        <button type="submit" id="navSearchButton">Search</button>
-                    </form>
-                </div>
+                <li><a href="{% url 'film:profile' %}">Profile</a></li>
             </ul>
         </div>
 

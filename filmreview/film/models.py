@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 class Movie(models.Model):
     name = models.CharField(max_length=128)
@@ -9,3 +10,6 @@ class Movie(models.Model):
     
     def __str__(self):
         return self.name
+
+class CustomUser(AbstractUser):
+    pass

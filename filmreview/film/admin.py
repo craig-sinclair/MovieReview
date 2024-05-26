@@ -1,5 +1,5 @@
 from django.contrib import admin
-from film.models import Movie
+from film.models import CustomUser
 
 # Register your models here.
-admin.site.register(Movie)
+admin.site.register(CustomUser)
