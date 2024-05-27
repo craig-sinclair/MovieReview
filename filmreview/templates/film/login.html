@@ -1,13 +1,20 @@
 {% extends 'film/navbar.html' %}
-{% load staticfiles %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block additional_styles %}
+<link rel="stylesheet" type="text/css" href="https://bootswatch.com/_vendor/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/formStyles.css' %}">
+{% endblock %}
 
 {% block body_block %}
-<h2>Register:</h2>
 <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
+    <div id="form_box">
+        <h2>Login:</h2>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <p>Don't have an account yet? Create one <a class="anchor-no-style" href="{% url 'film:register' %}">here!</a></p>
+        <button type="submit">Login</button>
+    </div>
 </form>
-<br>
-<h3>Not registered yet? Create an account <a href="{% url 'film:register' %}">here</a></h3>
 {% endblock %}

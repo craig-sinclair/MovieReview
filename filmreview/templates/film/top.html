@@ -1,9 +1,14 @@
 {% extends 'film/navbar.html' %}
-{% load staticfiles %}
+{% load static %}
 
 {% block additional_styles %}
 	<script src="{% static 'js/index.js' %}"></script>
 {% endblock %}
+
+{% block search_box %}
+{% include "film/searchBox.html" %}
+{% endblock %}
+
 {% block body_block %}
 <div id="homepage-box">
     <h3 class="index-header">Top Rated Films:</h3>

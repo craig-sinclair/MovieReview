@@ -1,10 +1,15 @@
 {% extends 'film/navbar.html' %}
-{% load staticfiles %}
+{% load static %}
 
 {% block body_block %}
-{% if user.is_authenticated %}
-<p>Hey! {{ user.username }}</p>
-{% else %}
-<h3>Not registered yet? Create an account <a href="{% url 'film:register' %}">here</a></h3>
-{% endif %}
+
+<div body-block>
+    {% if user.is_authenticated %}
+    <h3 style="width: 100%; margin-left: auto; margin-right: auto;">Hey! {{ user.username }}</h3>
+
+
+    {% else %}
+        <h3>Not registered yet? Create an account <a href="{% url 'film:register' %}">here</a></h3>
+    {% endif %}
+</div>
 {% endblock %}

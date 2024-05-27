@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+{% load static %}
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="{% static 'styles/indexStyles.css' %}">
@@ -7,6 +7,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Poetsen+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <script src="{% static 'js/index.js' %}"></script>
         {% block additional_styles %}
         {% endblock %}
         <title>
@@ -22,9 +23,21 @@
                 <li><a href="{% url 'film:index' %}">Home</a></li>
                 <li><a href="{% url 'film:top' %}">Top Rated</a></li>
                 <li><a href="{% url 'film:about' %}">About</a></li>
-                <li><a href="{% url 'film:profile' %}">Profile</a></li>
+
+                <div id="username-nav-div">
+                    {% if user.is_authenticated %}
+                        <li id="username-nav">
+                            <a href="{% url 'film:profile' %}">{{ user.username }}</a>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'film:login' %}" id="username-nav">Login</a></li>
+                    {% endif %}
+                </div>
             </ul>
         </div>
+
+        {% block search_box %}
+        {% endblock %}
 
         {% block body_block %}
         {% endblock %}

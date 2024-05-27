@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from film.tmdb import search_movie, get_popular_movies, get_movie_detail, get_cast, get_person_by_id, get_person_movies, get_top_rated, get_recommendations, get_trending_movies, TMDB_IMAGE_BASE_URL
+from film.tmdb import search_movie, get_popular_movies, get_movie_detail, get_cast, get_person_by_id, get_person_movies, get_top_rated, get_recommendations, get_trending_movies, get_search_suggestions, TMDB_IMAGE_BASE_URL
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import UserRegistrationForm, UserLoginForm
+import requests
+from django.http import JsonResponse
+from django.conf import settings
+
 
 def index(request):
     context_dict = {}
@@ -132,3 +136,7 @@ def user_logout(request):
 
 def profile(request):
     return render(request, 'film/profile.html')
+
+def search_suggestions(request):
+    query = request.GET.get('query', '')
+    return get_search_suggestions(query)

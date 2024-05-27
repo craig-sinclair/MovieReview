@@ -1,6 +1,7 @@
 from tmdbv3api import TMDb, Movie
 import requests
 from django.conf import settings
+from django.http import JsonResponse
 
 tmdb = TMDb()
 tmdb.api_key = settings.TMDB_API_KEY
@@ -99,3 +100,29 @@ def get_recommendations(movie_id):
     }
     response = requests.get(url, params=params)
     return response.json().get('results', [])
+
+def get_search_suggestions(query):
+    if query:
+        url = "https://api.themoviedb.org/3/search/movie"
+        params = {
+            'api_key': settings.TMDB_API_KEY,
+            'query': query
+        }
+        response = requests.get(url, params=params)
+        if response.status_code == 200:
+            movies = response.json().get('results', [])
+            # Filter movies to only include those with a poster path
+            movies_with_posters = [movie for movie in movies if movie.get('poster_path')]
+            suggestions = [
+                {
+                    'title': movie['title'],
+                    'poster_path': f"https://image.tmdb.org/t/p/w92{movie['poster_path']}",
+                    'id': movie['id'],
+                    'release_date': movie['release_date'][:4]
+                }
+                for movie in movies_with_posters[:5]  # Limit to top 5 suggestions
+            ]
+            return JsonResponse(suggestions, safe=False)
+        else:
+            return JsonResponse({'error': 'Error fetching suggestions'}, status=response.status_code)
+    return JsonResponse([])

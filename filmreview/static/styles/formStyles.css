@@ -1,0 +1,40 @@
+.form-control{
+    max-width: 80% !important;
+}
+
+body {
+    background-color: #333;
+    color: #ffffff;
+}
+
+.form-control, .input-group-text, .custom-select {
+    background-color: #2c2c2c;
+    border-color: #3a3a3a;
+    color: #ffffff;
+}
+
+.form-control:active{
+    border: none !important;
+}
+
+.form-control:focus{
+    border: none !important;
+    background-color: #2c2c2c;
+    color: white;
+}
+
+.form-control::after{
+    border: none !important;
+    background-color: #2c2c2c;
+}
+
+.form-text{
+    color: white;
+    opacity: 80%;
+}
+
+#form_box{
+    width: 80%; 
+    margin-left:auto; 
+    margin-right: auto;
+}

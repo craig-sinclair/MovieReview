@@ -1,9 +1,13 @@
 {% extends 'film/navbar.html' %}
-{% load staticfiles %}
+{% load static %}
 {% block additional_styles %}
     <link rel="stylesheet" type="text/css" href="{% static 'styles/detailsStyles.css' %}">
-    <script src="{% static 'js/index.js' %}"></script>
 {% endblock %}
+
+{% block search_box %}
+{% include "film/searchBox.html" %}
+{% endblock %}
+
 {% block body_block %}
 <br>
 <br>
