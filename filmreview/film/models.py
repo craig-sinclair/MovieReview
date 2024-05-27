@@ -10,6 +10,12 @@ class Movie(models.Model):
     
     def __str__(self):
         return self.name
+    
+class SavedMovie(models.Model):
+    movie_id = models.IntegerField(unique=True)
+    
+    def __str__(self):
+        return str(self.movie_id)
 
 class CustomUser(AbstractUser):
-    pass
+    saved_movies = models.ManyToManyField('SavedMovie', related_name='saved_by_users', blank=True)

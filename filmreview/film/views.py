@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from film.tmdb import search_movie, get_popular_movies, get_movie_detail, get_cast, get_person_by_id, get_person_movies, get_top_rated, get_recommendations, get_trending_movies, get_search_suggestions, TMDB_IMAGE_BASE_URL
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
@@ -8,6 +8,8 @@ from .forms import UserRegistrationForm, UserLoginForm
 import requests
 from django.http import JsonResponse
 from django.conf import settings
+from .models import SavedMovie, CustomUser
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -140,3 +142,17 @@ def profile(request):
 def search_suggestions(request):
     query = request.GET.get('query', '')
     return get_search_suggestions(query)
+
+@login_required
+def add_movie_to_saved(request, movie_id):
+    movie, created = SavedMovie.objects.get_or_create(movie_id=movie_id)
+    user = request.user
+    user.saved_movies.add(movie)
+    return redirect('film:profile')
+
+@login_required
+def remove_movie_from_saved(request, movie_id):
+    movie = get_object_or_404(SavedMovie, movie_id=movie_id)
+    user = request.user
+    user.saved_movies.remove(movie)
+    return redirect('film:profile')

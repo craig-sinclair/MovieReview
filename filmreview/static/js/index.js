@@ -90,4 +90,18 @@ document.addEventListener("DOMContentLoaded", function() {
         var suggestionsList = document.getElementById('suggestions');
         suggestionsList.innerHTML = '';
     }
+
+    function toggleImageSrc() {
+        const img = document.getElementById('bookmark');
+
+        // Toggle the source
+        if (img.src.includes('bookmark-plus.svg')) {
+            img.src = checkSrc;
+        } else {
+            img.src = plusSrc;
+        }
+    }
+
+    // Attach the toggle function to the click event of the image
+    document.getElementById('bookmark').addEventListener('click', toggleImageSrc);
 });

@@ -10,26 +10,43 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
     <script src="{% static 'js/progressbar.js' %}"></script>
     <script src="{% static 'js/semicircle.js' %}"></script>
+    <script>
+        const plusSrc = "{% static 'images/bookmark-plus.svg' %}";
+        const checkSrc = "{% static 'images/bookmark-check.svg' %}";
+    </script>
 {% endblock %}
 
 
 {% block body_block %}
     <div class="movie-search-info">
     {% if movie %}
-    <h1 id="detail-title">{{ movie.title }}</h1>
+
+    <div class="movie-title-block" style="display-flex">
+        <h1 id="detail-title">{{ movie.title }} </h1>
+        
+    </div>
     <div class="movie-container">
 
 
         <div class="movie-poster">
-            <img src="{{ poster_url }}" alt="{{ movie.title }} Poster" class="moviePicture-details"/>
+            <div class="poster-wrapper">
+                <img src="{{ poster_url }}" alt="{{ movie.title }} Poster" class="moviePicture-details"/>
+                <img src="{% static 'images/bookmark-plus.svg' %}" class="save-image" id="bookmark"/>
+            </div>
         </div>
+        
 
 
         <div id="movie-info">
-            <div id="container" score="{{ average_score }}"></div> <!-- Average score 'progress circle' -->
+
+            <div class="review-save">
+                <div id="container" score="{{ average_score }}"></div> <!-- Average score 'progress circle' -->
+            </div>
+
             <p><span style="font-weight: bold; font-size: larger;">Overview: </span><span id="movie-overview">{{ movie.overview }}</span></p>
             <button id="read-more-button" class="hidden">Read more</button>
             <p><span style="font-weight: bold; font-size: larger;">Release Year:</span> {{ release_date }}</p>
+            
             <hr>
 
             {% if cast %}

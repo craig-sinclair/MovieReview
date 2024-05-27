@@ -18,4 +18,6 @@ urlpatterns = [
     path('top/', views.top, name='top'),
     path('profile/', views.profile, name='profile'),
     path('search_suggestions/', views.search_suggestions, name='search_suggestions'),  
+    path('add_movie/<int:movie_id>/', views.add_movie_to_saved, name='add_movie_to_saved'),
+    path('remove_movie/<int:movie_id>/', views.remove_movie_from_saved, name='remove_movie_from_saved'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
