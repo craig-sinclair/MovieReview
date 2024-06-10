@@ -162,3 +162,19 @@ hr {
     margin: 0px;
     cursor: pointer;
 }
+
+button#bookmark-button {
+    background: transparent;
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    height: 45px;
+    width: 45px;
+}
+
+img#bookmark {
+    padding: 0px;
+    margin: 0px;
+    height: 50px;
+    width: auto;
+}

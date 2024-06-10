@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
     <script src="{% static 'js/progressbar.js' %}"></script>
     <script src="{% static 'js/semicircle.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
     <script>
         const plusSrc = "{% static 'images/bookmark-plus.svg' %}";
         const checkSrc = "{% static 'images/bookmark-check.svg' %}";
@@ -21,7 +22,7 @@
     <div class="movie-search-info">
     {% if movie %}
 
-    <div class="movie-title-block" style="display-flex">
+    <div class="movie-title-block" style="display: flex">
         <h1 id="detail-title">{{ movie.title }} </h1>
         
     </div>
@@ -31,7 +32,16 @@
         <div class="movie-poster">
             <div class="poster-wrapper">
                 <img src="{{ poster_url }}" alt="{{ movie.title }} Poster" class="moviePicture-details"/>
-                <img src="{% static 'images/bookmark-plus.svg' %}" class="save-image" id="bookmark"/>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="button" class="save-image" id="bookmark-button" 
+                            data-add-url="{% url 'film:add_movie_to_saved'  movie.id %}" 
+                            data-remove-url="{% url 'film:remove_movie_from_saved' movie.id %}" 
+                            onclick="toggleBookmark(this)">
+                        <img src="{% static 'images/bookmark-plus.svg' %}" id="bookmark"/>
+                    </button>
+                </form>
             </div>
         </div>
         

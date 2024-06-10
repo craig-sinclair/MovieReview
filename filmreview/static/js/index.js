@@ -16,6 +16,49 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+function toggleBookmark(button) {
+    const img = document.getElementById('bookmark');
+    const addUrl = button.getAttribute('data-add-url');
+    const removeUrl = button.getAttribute('data-remove-url');
+    const isBookmarked = img.src.includes('bookmark-check.svg');
+
+    const url = isBookmarked ? removeUrl : addUrl;
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({})
+    })
+    .then(response => {
+        if (response.ok) {
+            img.src = isBookmarked ? plusSrc : checkSrc;
+        } else {
+            console.error('Error:', response.statusText);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 // Read more button for a movie's overview, or a person's biography, if exceeds character limit
 document.addEventListener("DOMContentLoaded", function() {
     // Overview truncation and "Read more" functionality
@@ -90,18 +133,4 @@ document.addEventListener("DOMContentLoaded", function() {
         var suggestionsList = document.getElementById('suggestions');
         suggestionsList.innerHTML = '';
     }
-
-    function toggleImageSrc() {
-        const img = document.getElementById('bookmark');
-
-        // Toggle the source
-        if (img.src.includes('bookmark-plus.svg')) {
-            img.src = checkSrc;
-        } else {
-            img.src = plusSrc;
-        }
-    }
-
-    // Attach the toggle function to the click event of the image
-    document.getElementById('bookmark').addEventListener('click', toggleImageSrc);
 });

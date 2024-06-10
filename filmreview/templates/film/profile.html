@@ -6,7 +6,13 @@
 <div body-block>
     {% if user.is_authenticated %}
     <h3 style="width: 100%; margin-left: auto; margin-right: auto;">Hey! {{ user.username }}</h3>
-
+    {% if saved_movie %}
+        {% for movie in saved_movie %}
+            <p>{{ movie.movie_id }}</p>
+        {% endfor %}
+    {% else %}
+        <p>No saved movies yet!</p>
+    {% endif %}
 
     {% else %}
         <h3>Not registered yet? Create an account <a href="{% url 'film:register' %}">here</a></h3>

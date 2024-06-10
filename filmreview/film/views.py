@@ -137,7 +137,11 @@ def user_logout(request):
     return redirect('film:index')
 
 def profile(request):
-    return render(request, 'film/profile.html')
+    context_dict = {}
+    user = request.user
+    context_dict['name'] = user.username
+    context_dict['saved_movies'] = user.saved_movies
+    return render(request, 'film/profile.html', context=context_dict)
 
 def search_suggestions(request):
     query = request.GET.get('query', '')
@@ -147,12 +151,13 @@ def search_suggestions(request):
 def add_movie_to_saved(request, movie_id):
     movie, created = SavedMovie.objects.get_or_create(movie_id=movie_id)
     user = request.user
-    user.saved_movies.add(movie)
+    if (created == False):
+        user.saved_movies.add(movie_id)
     return redirect('film:profile')
 
 @login_required
 def remove_movie_from_saved(request, movie_id):
     movie = get_object_or_404(SavedMovie, movie_id=movie_id)
     user = request.user
-    user.saved_movies.remove(movie)
+    user.saved_movies.remove(movie_id)
     return redirect('film:profile')
